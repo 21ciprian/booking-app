@@ -103,7 +103,7 @@ const OptionItem = styled.div`
 	}
 `
 
-function Header() {
+function Header({type}) {
 	const [date, setDate] = useState([
 		{
 			startDate: new Date(),
@@ -124,7 +124,10 @@ function Header() {
 	}
 	return (
 		<Head>
-			<HeaderSection>
+			<HeaderSection
+				style={{
+					margin: type === 'hotels' ? '1.25rem 0 2.5rem 0' : '1.25rem 0 7rem 0',
+				}}>
 				<HeaderList>
 					<HeaderListitem className='active'>
 						<FontAwesomeIcon icon={faBed} />
@@ -147,92 +150,98 @@ function Header() {
 						<span>Airport taxi</span>
 					</HeaderListitem>
 				</HeaderList>
-				<h1>A lifetime of discounts? It's Genius.</h1>
-				<p>
-					Get rewarderd for your travels - unlock instant savings of 10% or more
-					with a free booking-app account
-				</p>
-				<Button>Sign in / Register</Button>
-				<HeaderSearch>
-					<HeaderSearchItem>
-						{' '}
-						<FontAwesomeIcon icon={faBed} className='headerIcon' />
-						<Input type='text' placeholder='Where are you going?' />
-					</HeaderSearchItem>
-					<HeaderSearchItem>
-						{' '}
-						<FontAwesomeIcon icon={faCalendarDays} className='headerIcon' />
-						<span onClick={() => setOpenDate(!openDate)}>{`${format(
-							date[0].startDate,
-							'MM/dd/yyyy'
-						)} to ${format(date[0].endDate, 'MM/dd/yyyy')}`}</span>{' '}
-						{openDate && (
-							<DateRange
-								editableDateInputs={true}
-								onChange={item => setDate([item.selection])}
-								moveRangeOnFirstSelection={false}
-								ranges={date}
-								className='date'
-							/>
-						)}
-					</HeaderSearchItem>
-					<HeaderSearchItem>
-						{' '}
-						<FontAwesomeIcon icon={faPerson} className='headerIcon' />
-						<span
-							onClick={() =>
-								setOpenOptions(!openOptions)
-							}>{`${options.adult} adult ~ ${options.children} children ~ ${options.room} room`}</span>{' '}
-						{openOptions && (
-							<OptionSection>
-								<OptionItem>
-									<span>Adult</span>
-									<div>
-										<button
-											disabled={options.adult <= 1}
-											onClick={() => handleOption('adult', 'd')}>
-											-
-										</button>
-										<span>{options.adult}</span>
-										<button onClick={() => handleOption('adult', 'i')}>
-											+
-										</button>
-									</div>
-								</OptionItem>
-								<OptionItem>
-									<span>Children</span>
-									<div>
-										<button
-											disabled={options.children <= 0}
-											onClick={() => handleOption('children', 'd')}>
-											-
-										</button>
-										<span>{options.children}</span>
-										<button onClick={() => handleOption('children', 'i')}>
-											+
-										</button>
-									</div>
-								</OptionItem>
-								<OptionItem>
-									<span>Room</span>
-									<div>
-										<button
-											disabled={options.room <= 1}
-											onClick={() => handleOption('room', 'd')}>
-											-
-										</button>
-										<span>{options.room}</span>
-										<button onClick={() => handleOption('room', 'i')}>+</button>
-									</div>
-								</OptionItem>
-							</OptionSection>
-						)}
-					</HeaderSearchItem>
-					<HeaderSearchItem>
-						{' '}
-						<SearchButton>Search</SearchButton>{' '}
-					</HeaderSearchItem>
-				</HeaderSearch>
+				{type !== 'hotels' && (
+					<>
+						<h1>A lifetime of discounts? It's Genius.</h1>
+						<p>
+							Get rewarderd for your travels - unlock instant savings of 10% or
+							more with a free booking-app account
+						</p>
+						<Button>Sign in / Register</Button>
+						<HeaderSearch>
+							<HeaderSearchItem>
+								{' '}
+								<FontAwesomeIcon icon={faBed} className='headerIcon' />
+								<Input type='text' placeholder='Where are you going?' />
+							</HeaderSearchItem>
+							<HeaderSearchItem>
+								{' '}
+								<FontAwesomeIcon icon={faCalendarDays} className='headerIcon' />
+								<span onClick={() => setOpenDate(!openDate)}>{`${format(
+									date[0].startDate,
+									'MM/dd/yyyy'
+								)} to ${format(date[0].endDate, 'MM/dd/yyyy')}`}</span>{' '}
+								{openDate && (
+									<DateRange
+										editableDateInputs={true}
+										onChange={item => setDate([item.selection])}
+										moveRangeOnFirstSelection={false}
+										ranges={date}
+										className='date'
+									/>
+								)}
+							</HeaderSearchItem>
+							<HeaderSearchItem>
+								{' '}
+								<FontAwesomeIcon icon={faPerson} className='headerIcon' />
+								<span
+									onClick={() =>
+										setOpenOptions(!openOptions)
+									}>{`${options.adult} adult ~ ${options.children} children ~ ${options.room} room`}</span>{' '}
+								{openOptions && (
+									<OptionSection>
+										<OptionItem>
+											<span>Adult</span>
+											<div>
+												<button
+													disabled={options.adult <= 1}
+													onClick={() => handleOption('adult', 'd')}>
+													-
+												</button>
+												<span>{options.adult}</span>
+												<button onClick={() => handleOption('adult', 'i')}>
+													+
+												</button>
+											</div>
+										</OptionItem>
+										<OptionItem>
+											<span>Children</span>
+											<div>
+												<button
+													disabled={options.children <= 0}
+													onClick={() => handleOption('children', 'd')}>
+													-
+												</button>
+												<span>{options.children}</span>
+												<button onClick={() => handleOption('children', 'i')}>
+													+
+												</button>
+											</div>
+										</OptionItem>
+										<OptionItem>
+											<span>Room</span>
+											<div>
+												<button
+													disabled={options.room <= 1}
+													onClick={() => handleOption('room', 'd')}>
+													-
+												</button>
+												<span>{options.room}</span>
+												<button onClick={() => handleOption('room', 'i')}>
+													+
+												</button>
+											</div>
+										</OptionItem>
+									</OptionSection>
+								)}
+							</HeaderSearchItem>
+							<HeaderSearchItem>
+								{' '}
+								<SearchButton>Search</SearchButton>{' '}
+							</HeaderSearchItem>
+						</HeaderSearch>
+					</>
+				)}
 			</HeaderSection>
 		</Head>
 	)
