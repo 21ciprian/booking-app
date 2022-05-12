@@ -11,97 +11,9 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {format} from 'date-fns'
 import React, {useState} from 'react'
 import {DateRange} from 'react-date-range'
-import 'react-date-range/dist/styles.css' // main css file
-import 'react-date-range/dist/theme/default.css' // theme css file
-import styled from 'styled-components'
-
-const Head = styled.header`
-	background-color: #003580;
-	color: #fff;
-	display: flex;
-	justify-content: center;
-	position: relative;
-`
-const HeaderSection = styled.section`
-	width: 100%;
-	max-width: 1024px;
-	padding: 0 0.5rem;
-	margin: 1.25rem 0 7rem 0;
-`
-const HeaderList = styled.div`
-	display: flex;
-	gap: 2.5rem;
-`
-const HeaderListitem = styled.div`
-	display: flex;
-	align-items: center;
-	gap: 0.6rem;
-`
-const Button = styled.button`
-	background-color: #0071c2;
-	color: #fff;
-	font-weight: 500;
-	border: none;
-	outline: none;
-	padding: 0.65rem;
-	cursor: pointer;
-`
-const HeaderSearch = styled.section`
-	height: 2rem;
-	background-color: #fff;
-	border: 3px solid #febb02;
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
-	padding: 0.6rem 0;
-	border-radius: 0.3rem;
-	position: absolute;
-	bottom: -1.6rem;
-	width: 100%;
-	max-width: 1024px;
-`
-const HeaderSearchItem = styled.section`
-	display: flex;
-	align-items: center;
-	gap: 0.6rem;
-	color: lightgray;
-	position: relative;
-`
-const Input = styled.input`
-	border: none;
-	outline: none;
-`
-const SearchButton = styled(Button)``
-const OptionSection = styled.section`
-	position: absolute;
-	top: 3.2rem;
-	background-color: #fff;
-	color: gray;
-	-webkit-box-shadow: 0 0 10px -5px rgba(0, 0, 0, 0.4);
-	box-shadow: 0 0 10px -5px rgba(0, 0, 0, 0.4);
-`
-const OptionItem = styled.div`
-	width: 12.5rem;
-	display: flex;
-	justify-content: space-between;
-	margin: 0.7rem;
-	& div {
-		display: flex;
-		align-items: center;
-		gap: 0.7rem;
-	}
-	& button {
-		width: 1.8rem;
-		height: 1.8rem;
-		border: 1px solid #0071c2;
-		color: #0071c2;
-		cursor: pointer;
-		background-color: #fff;
-		&:disabled {
-			cursor: not-allowed;
-		}
-	}
-`
+import 'react-date-range/dist/styles.css'
+import 'react-date-range/dist/theme/default.css'
+import styles from './Header.module.css'
 
 function Header({type}) {
 	const [date, setDate] = useState([
@@ -122,128 +34,161 @@ function Header({type}) {
 			}
 		})
 	}
+	console.log('format: ', format)
 	return (
-		<Head>
-			<HeaderSection
-				style={{
-					margin: type === 'hotels' ? '1.25rem 0 2.5rem 0' : '1.25rem 0 7rem 0',
-				}}>
-				<HeaderList>
-					<HeaderListitem className='active'>
+		<header className={styles.header}>
+			<section
+				className={
+					type === 'hotels'
+						? `${styles.headerContainer} ${styles.listMode}`
+						: `${styles.headerContainer}`
+				}>
+				<section className={styles.headerList}>
+					<div className={`${styles.headerListItem} ${styles.active}`}>
 						<FontAwesomeIcon icon={faBed} />
 						<span>Stays</span>
-					</HeaderListitem>
-					<HeaderListitem>
+					</div>
+					<div className={styles.headerListItem}>
 						<FontAwesomeIcon icon={faPlane} />
 						<span>Flights</span>
-					</HeaderListitem>
-					<HeaderListitem>
+					</div>
+					<div className={styles.headerListItem}>
 						<FontAwesomeIcon icon={faCar} />
 						<span>Car rentals</span>
-					</HeaderListitem>
-					<HeaderListitem>
+					</div>
+					<div className={styles.headerListItem}>
 						<FontAwesomeIcon icon={faMountainCity} />
 						<span>Attractions</span>
-					</HeaderListitem>
-					<HeaderListitem>
+					</div>
+					<div className={styles.headerListItem}>
 						<FontAwesomeIcon icon={faTaxi} />
 						<span>Airport taxi</span>
-					</HeaderListitem>
-				</HeaderList>
+					</div>
+				</section>
 				{type !== 'hotels' && (
 					<>
-						<h1>A lifetime of discounts? It's Genius.</h1>
-						<p>
+						<h1 className={styles.headerTitle}>
+							A lifetime of discounts? It's Genius.
+						</h1>
+						<p className={styles.headerDesc}>
 							Get rewarderd for your travels - unlock instant savings of 10% or
 							more with a free booking-app account
 						</p>
-						<Button>Sign in / Register</Button>
-						<HeaderSearch>
-							<HeaderSearchItem>
+						<button className={styles.headerButton}>Sign in / Register</button>
+						<section className={styles.headerSearch}>
+							<div className={styles.headerSearchItem}>
 								{' '}
-								<FontAwesomeIcon icon={faBed} className='headerIcon' />
-								<Input type='text' placeholder='Where are you going?' />
-							</HeaderSearchItem>
-							<HeaderSearchItem>
+								<FontAwesomeIcon icon={faBed} className={styles.headerIcon} />
+								<input
+									type='text'
+									placeholder='Where are you going?'
+									className={styles.headerSearchInput}
+								/>
+							</div>
+							<div className={styles.headerSearchItem}>
 								{' '}
-								<FontAwesomeIcon icon={faCalendarDays} className='headerIcon' />
-								<span onClick={() => setOpenDate(!openDate)}>{`${format(
+								<FontAwesomeIcon
+									icon={faCalendarDays}
+									className={styles.headerIcon}
+								/>
+								<span
+									className={styles.headerSearchText}
+									onClick={() => setOpenDate(!openDate)}>{`${format(
 									date[0].startDate,
-									'MM/dd/yyyy'
-								)} to ${format(date[0].endDate, 'MM/dd/yyyy')}`}</span>{' '}
+									'dd/MM/yyyy'
+								)} to ${format(date[0].endDate, 'dd/MM/yyyy')}`}</span>{' '}
 								{openDate && (
 									<DateRange
 										editableDateInputs={true}
 										onChange={item => setDate([item.selection])}
 										moveRangeOnFirstSelection={false}
 										ranges={date}
-										className='date'
+										className={styles.date}
 									/>
 								)}
-							</HeaderSearchItem>
-							<HeaderSearchItem>
+							</div>
+							<div className={styles.headerSearchItem}>
 								{' '}
-								<FontAwesomeIcon icon={faPerson} className='headerIcon' />
+								<FontAwesomeIcon
+									icon={faPerson}
+									className={styles.headerIcon}
+								/>
 								<span
+									className={styles.headerSearchText}
 									onClick={() =>
 										setOpenOptions(!openOptions)
-									}>{`${options.adult} adult ~ ${options.children} children ~ ${options.room} room`}</span>{' '}
+									}>{`${options.adult} adult • ${options.children} children • ${options.room} room`}</span>{' '}
 								{openOptions && (
-									<OptionSection>
-										<OptionItem>
-											<span>Adult</span>
-											<div>
+									<section className={styles.options}>
+										<div className={styles.optionItem}>
+											<span className={styles.optionText}>Adult</span>
+											<div className={styles.optionCounter}>
 												<button
+													className={styles.optionCounterButton}
 													disabled={options.adult <= 1}
 													onClick={() => handleOption('adult', 'd')}>
 													-
 												</button>
-												<span>{options.adult}</span>
-												<button onClick={() => handleOption('adult', 'i')}>
+												<span className={styles.optionCounterNumber}>
+													{options.adult}
+												</span>
+												<button
+													className={styles.optionCounterButton}
+													onClick={() => handleOption('adult', 'i')}>
 													+
 												</button>
 											</div>
-										</OptionItem>
-										<OptionItem>
-											<span>Children</span>
-											<div>
+										</div>
+										<div className={styles.optionItem}>
+											<span className={styles.optionText}>Children</span>
+											<div className={styles.optionCounter}>
 												<button
+													className={styles.optionCounterButton}
 													disabled={options.children <= 0}
 													onClick={() => handleOption('children', 'd')}>
 													-
 												</button>
-												<span>{options.children}</span>
-												<button onClick={() => handleOption('children', 'i')}>
+												<span className={styles.optionCounterNumber}>
+													{options.children}
+												</span>
+												<button
+													className={styles.optionCounterButton}
+													onClick={() => handleOption('children', 'i')}>
 													+
 												</button>
 											</div>
-										</OptionItem>
-										<OptionItem>
-											<span>Room</span>
-											<div>
+										</div>
+										<div className={styles.optionItem}>
+											<span className={styles.optionText}>Room</span>
+											<div className={styles.optionCounter}>
 												<button
+													className={styles.optionCounterButton}
 													disabled={options.room <= 1}
 													onClick={() => handleOption('room', 'd')}>
 													-
 												</button>
-												<span>{options.room}</span>
-												<button onClick={() => handleOption('room', 'i')}>
+												<span className={styles.optionCounterNumber}>
+													{options.room}
+												</span>
+												<button
+													className={styles.optionCounterButton}
+													onClick={() => handleOption('room', 'i')}>
 													+
 												</button>
 											</div>
-										</OptionItem>
-									</OptionSection>
+										</div>
+									</section>
 								)}
-							</HeaderSearchItem>
-							<HeaderSearchItem>
+							</div>
+							<div className={styles.headerSearchItem}>
 								{' '}
-								<SearchButton>Search</SearchButton>{' '}
-							</HeaderSearchItem>
-						</HeaderSearch>
+								<button className={styles.headerButton}>Search</button>{' '}
+							</div>
+						</section>
 					</>
 				)}
-			</HeaderSection>
-		</Head>
+			</section>
+		</header>
 	)
 }
 
