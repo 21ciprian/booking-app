@@ -14,6 +14,7 @@ function Home() {
 				<Featured />
 				<h1 className={styles.homeTitle}>Browse by property type</h1>
 				<PropertyList />
+				<h1 className={styles.homeTitle}>Homes guests love</h1>
 			</section>
 		</div>
 	)
