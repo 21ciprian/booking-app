@@ -1,0 +1,27 @@
+.hotelsContainer {
+	display: flex;
+	justify-content: center;
+	margin-top: 1.25rem;
+}
+.hotelsWrapper {
+	width: 100%;
+	max-width: 1024px;
+	display: flex;
+	gap: 1.25rem;
+}
+.hotelsSearch {
+	flex: 1;
+	background-color: #febb02;
+	position: sticky;
+	top: 0.7rem;
+}
+.hotelsResult {
+	flex: 3;
+	background-color: red;
+	height: 50px;
+}
+.hotelsTitle {
+	font-size: 1.25rem;
+	color: #555;
+	margin-bottom: 0.7rem;
+}
