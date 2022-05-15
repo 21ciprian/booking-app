@@ -4,6 +4,7 @@ import {DateRange} from 'react-date-range'
 import {useLocation} from 'react-router-dom'
 import Header from '../../components/Header/Header'
 import Navbar from '../../components/Navbar/Navbar'
+import SearchItem from '../../components/SearchItem/SearchItem'
 import styles from './Hotels.module.css'
 
 function Hotels() {
@@ -87,7 +88,16 @@ function Hotels() {
 						</div>
 						<button>Search</button>
 					</div>
-					<div className={styles.hotelsResult}></div>
+					<div className={styles.hotelsResult}>
+						<SearchItem />
+						<SearchItem />
+						<SearchItem />
+						<SearchItem />
+						<SearchItem />
+						<SearchItem />
+						<SearchItem />
+						<SearchItem />
+					</div>
 				</section>
 			</section>
 		</section>

@@ -16,6 +16,7 @@
 	top: 0.7rem;
 	border-radius: 0.7rem;
 	padding: 0.7rem;
+	height: max-content;
 }
 .hotelsTitle {
 	font-size: 1.25rem;
@@ -66,9 +67,8 @@
 	width: 100%;
 	font-weight: 500;
 	cursor: pointer;
+	border-radius: 0.25rem;
 }
 .hotelsResult {
 	flex: 3;
-	background-color: red;
-	height: 50px;
 }
