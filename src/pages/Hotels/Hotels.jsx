@@ -1,4 +1,6 @@
-import React from 'react'
+import {format} from 'date-fns'
+import React, {useState} from 'react'
+import {DateRange} from 'react-date-range'
 import {useLocation} from 'react-router-dom'
 import Header from '../../components/Header/Header'
 import Navbar from '../../components/Navbar/Navbar'
@@ -6,6 +8,11 @@ import styles from './Hotels.module.css'
 
 function Hotels() {
 	const location = useLocation()
+	const [date, setDate] = useState(location.state.date)
+	const [destination, setDestination] = useState(location.state.destination)
+	const [options, setOptions] = useState(location.state.options)
+	const [openDate, setOpenDate] = useState(false)
+
 	console.log('location: ', location)
 	return (
 		<section>
@@ -17,12 +24,68 @@ function Hotels() {
 						<h1 className={styles.hotelsTitle}>Search</h1>
 						<div className={styles.hotelsItem}>
 							<label>Destination</label>
-							<input type='text' />
+							<input type='text' placeholder={destination} />
 						</div>
 						<div className={styles.hotelsItem}>
 							<label>Check-in date</label>
-							<input type='text' />
+							<span onClick={() => setOpenDate(!openDate)}>{`${format(
+								date[0].startDate,
+								'dd/MM/yyyy'
+							)} to ${format(date[0].endDate, 'dd/MM/yyyy')}`}</span>
+							{openDate && (
+								<DateRange
+									minDate={new Date()}
+									onChange={item => setDate([item.selection])}
+									ranges={date}
+									className={styles.date}
+								/>
+							)}
 						</div>
+						<div className={styles.hotelsItem}>
+							<label>Options</label>
+							<div className={styles.hotelsOptions}>
+								<div className={styles.hotelsOptionItem}>
+									<span className={styles.hotelsOptionText}>
+										Min price <small>per night</small>
+									</span>
+									<input type='number' className={styles.hotelsOptionInput} />
+								</div>
+								<div className={styles.hotelsOptionItem}>
+									<span className={styles.hotelsOptionText}>
+										Max price <small>per night</small>
+									</span>
+									<input type='number' className={styles.hotelsOptionInput} />
+								</div>
+								<div className={styles.hotelsOptionItem}>
+									<span className={styles.hotelsOptionText}>Adult</span>
+									<input
+										min={1}
+										type='number'
+										className={styles.hotelsOptionInput}
+										placeholder={options.adult}
+									/>
+								</div>
+								<div className={styles.hotelsOptionItem}>
+									<span className={styles.hotelsOptionText}>Children</span>
+									<input
+										type='number'
+										min={0}
+										className={styles.hotelsOptionInput}
+										placeholder={options.children}
+									/>
+								</div>
+								<div className={styles.hotelsOptionItem}>
+									<span className={styles.hotelsOptionText}>Room</span>
+									<input
+										min={1}
+										type='number'
+										className={styles.hotelsOptionInput}
+										placeholder={options.room}
+									/>
+								</div>
+							</div>
+						</div>
+						<button>Search</button>
 					</div>
 					<div className={styles.hotelsResult}></div>
 				</section>
