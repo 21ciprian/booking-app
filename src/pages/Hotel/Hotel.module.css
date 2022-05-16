@@ -30,3 +30,8 @@
 	color: #008009;
 	font-weight: 500;
 }
+.hotelImages {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
