@@ -13,3 +13,7 @@
 .hotelImgWrapper {
 	width: 33%;
 }
+.hotelImg {
+	width: 100%;
+	object-fit: cover;
+}
