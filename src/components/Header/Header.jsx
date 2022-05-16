@@ -45,7 +45,7 @@ function Header({type}) {
 		<header className={styles.header}>
 			<section
 				className={
-					type === 'hotels'
+					type === 'list'
 						? `${styles.headerContainer} ${styles.listMode}`
 						: `${styles.headerContainer}`
 				}>
@@ -71,7 +71,7 @@ function Header({type}) {
 						<span>Airport taxi</span>
 					</div>
 				</section>
-				{type !== 'hotels' && (
+				{type !== 'list' && (
 					<>
 						<h1 className={styles.headerTitle}>
 							A lifetime of discounts? It's Genius.

@@ -18,7 +18,7 @@ function Hotels() {
 	return (
 		<section>
 			<Navbar />
-			<Header type='hotels' />
+			<Header type='list' />
 			<section className={styles.hotelsContainer}>
 				<section className={styles.hotelsWrapper}>
 					<div className={styles.hotelsSearch}>
