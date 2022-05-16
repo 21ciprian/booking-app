@@ -32,6 +32,7 @@ function Hotel() {
 			<Header type='list' />
 			<section className={styles.hotelContainer}>
 				<section className={styles.hotelWrapper}>
+					<button className={styles.bookNow}>Reserve or Book now!</button>
 					<h1 className={styles.hotelTitle}>Grand Hotel</h1>
 					<div className={styles.hotelAddress}>
 						<FontAwesomeIcon icon={faLocationDot} />
@@ -87,7 +88,7 @@ function Hotel() {
 							<h2>
 								<strong>£700</strong> (7 nights)
 							</h2>
-							<button>REserve or Book now!</button>
+							<button>Reserve or Book now!</button>
 						</div>
 					</div>
 				</section>
