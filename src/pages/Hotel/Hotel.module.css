@@ -10,3 +10,6 @@
 	flex-direction: column;
 	gap: 0.7rem;
 }
+.hotelImgWrapper {
+	width: 33%;
+}
