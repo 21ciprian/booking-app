@@ -58,6 +58,10 @@
 .hotelDetailsTexts {
 	flex: 3;
 }
+.hotelDesc {
+	font-size: 0.9rem;
+	margin-top: 1.25rem;
+}
 .hotelDetailsPrice {
 	flex: 1;
 }
