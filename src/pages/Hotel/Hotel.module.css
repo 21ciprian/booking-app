@@ -64,4 +64,9 @@
 }
 .hotelDetailsPrice {
 	flex: 1;
+	background-color: #ebf3ff;
+	padding: 1.25rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
 }
