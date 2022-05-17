@@ -49,3 +49,9 @@
 	flex-wrap: wrap;
 	justify-content: space-between;
 }
+.hotelDetails {
+	display: flex;
+	justify-content: space-between;
+	gap: 1.25rem;
+	margin-top: 1.25rem;
+}
