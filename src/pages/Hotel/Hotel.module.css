@@ -113,3 +113,11 @@
 	width: 80%;
 	height: 80vh;
 }
+.close {
+	position: absolute;
+	top: 1.25rem;
+	right: 1.25rem;
+	font-size: 1.9rem;
+	color: lightgray;
+	cursor: pointer;
+}

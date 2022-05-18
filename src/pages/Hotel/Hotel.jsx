@@ -46,8 +46,11 @@ function Hotel() {
 			<section className={styles.hotelContainer}>
 				{open && (
 					<section className={styles.slider}>
-						<FontAwesomeIcon icon={faCircleXmark} />
-						<FontAwesomeIcon icon={faCircleArrowLeft} />
+						<FontAwesomeIcon icon={faCircleXmark} className={styles.close} />
+						<FontAwesomeIcon
+							icon={faCircleArrowLeft}
+							className={styles.arrow}
+						/>
 						<div className={styles.sliderWrapper}>
 							<img
 								src={photos[slideIdx].src}
@@ -55,7 +58,10 @@ function Hotel() {
 								className={styles.sliderImg}
 							/>
 						</div>
-						<FontAwesomeIcon icon={faCircleArrowRight} />
+						<FontAwesomeIcon
+							icon={faCircleArrowRight}
+							className={styles.arrow}
+						/>
 					</section>
 				)}
 
