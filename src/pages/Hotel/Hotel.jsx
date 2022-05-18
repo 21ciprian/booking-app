@@ -49,7 +49,11 @@ function Hotel() {
 						<FontAwesomeIcon icon={faCircleXmark} />
 						<FontAwesomeIcon icon={faCircleArrowLeft} />
 						<div className={styles.sliderWrapper}>
-							<img src={photos[slideIdx].src} alt='room' />
+							<img
+								src={photos[slideIdx].src}
+								alt='room'
+								className={styles.sliderImg}
+							/>
 						</div>
 						<FontAwesomeIcon icon={faCircleArrowRight} />
 					</section>
