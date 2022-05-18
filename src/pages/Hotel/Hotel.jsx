@@ -39,6 +39,15 @@ function Hotel() {
 		setSlideIdx(i)
 		setOpen(true)
 	}
+	function handleMove(direction) {
+		let newSlideIdx
+		if (direction === 'left') {
+			newSlideIdx = slideIdx === 0 ? 5 : slideIdx - 1
+		} else {
+			newSlideIdx = slideIdx === 5 ? 0 : slideIdx + 1
+		}
+		setSlideIdx(newSlideIdx)
+	}
 	return (
 		<section>
 			<Navbar />
@@ -52,6 +61,7 @@ function Hotel() {
 							className={styles.close}
 						/>
 						<FontAwesomeIcon
+							onClick={() => handleMove('left')}
 							icon={faCircleArrowLeft}
 							className={styles.arrow}
 						/>
@@ -63,6 +73,7 @@ function Hotel() {
 							/>
 						</div>
 						<FontAwesomeIcon
+							onClick={() => handleMove('right')}
 							icon={faCircleArrowRight}
 							className={styles.arrow}
 						/>
