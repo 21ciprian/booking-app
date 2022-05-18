@@ -1,6 +1,6 @@
 import {faLocationDot} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import React from 'react'
+import React, {useState} from 'react'
 import Footer from '../../components/Footer/Footer'
 import Header from '../../components/Header/Header'
 import MailList from '../../components/MailList/MailList'
@@ -8,6 +8,7 @@ import Navbar from '../../components/Navbar/Navbar'
 import styles from './Hotel.module.css'
 
 function Hotel() {
+	const [slideIdx, setSlideIdx] = useState(0)
 	const photos = [
 		{
 			src: 'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/62305922.jpg?k=c33694ab801f8841867fb75d537af4f637e909975db8631dd467a97b606457cc&o=&hp=1',
@@ -33,6 +34,7 @@ function Hotel() {
 			<Navbar />
 			<Header type='list' />
 			<section className={styles.hotelContainer}>
+				<section className={styles.slider}></section>
 				<section className={styles.hotelWrapper}>
 					<button className={styles.bookNow}>Reserve or Book now!</button>
 					<h1 className={styles.hotelTitle}>Grand Hotel</h1>
@@ -47,9 +49,14 @@ function Hotel() {
 						Book a stay over £123 at this property and get free airport taxi
 					</span>
 					<div className={styles.hotelImages}>
-						{photos.map(photo => (
+						{photos.map((photo, i) => (
 							<div key={photo.src} className={styles.hotelImgWrapper}>
-								<img src={photo.src} alt='room' className={styles.hotelImg} />
+								<img
+									onClick={() => setSlideIdx(i)}
+									src={photo.src}
+									alt='room'
+									className={styles.hotelImg}
+								/>
 							</div>
 						))}
 					</div>
