@@ -46,7 +46,11 @@ function Hotel() {
 			<section className={styles.hotelContainer}>
 				{open && (
 					<section className={styles.slider}>
-						<FontAwesomeIcon icon={faCircleXmark} className={styles.close} />
+						<FontAwesomeIcon
+							onClick={() => setOpen(false)}
+							icon={faCircleXmark}
+							className={styles.close}
+						/>
 						<FontAwesomeIcon
 							icon={faCircleArrowLeft}
 							className={styles.arrow}

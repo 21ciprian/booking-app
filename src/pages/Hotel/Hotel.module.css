@@ -121,3 +121,9 @@
 	color: lightgray;
 	cursor: pointer;
 }
+.arrow {
+	margin: 1.25rem;
+	font-size: 3.2rem;
+	color: lightgray;
+	cursor: pointer;
+}
