@@ -1,4 +1,9 @@
-import {faLocationDot} from '@fortawesome/free-solid-svg-icons'
+import {
+	faCircleArrowLeft,
+	faCircleArrowRight,
+	faCircleXmark,
+	faLocationDot,
+} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React, {useState} from 'react'
 import Footer from '../../components/Footer/Footer'
@@ -9,6 +14,7 @@ import styles from './Hotel.module.css'
 
 function Hotel() {
 	const [slideIdx, setSlideIdx] = useState(0)
+	const [open, setOpen] = useState(false)
 	const photos = [
 		{
 			src: 'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/62305922.jpg?k=c33694ab801f8841867fb75d537af4f637e909975db8631dd467a97b606457cc&o=&hp=1',
@@ -29,12 +35,26 @@ function Hotel() {
 			src: 'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/117387363.jpg?k=b6fd39f022248b6d1be0af3c91824b74c8e9ff095cee850073e08f254c933972&o=&hp=1',
 		},
 	]
+	function handleOpen(i) {
+		setSlideIdx(i)
+		setOpen(true)
+	}
 	return (
 		<section>
 			<Navbar />
 			<Header type='list' />
 			<section className={styles.hotelContainer}>
-				<section className={styles.slider}></section>
+				{open && (
+					<section className={styles.slider}>
+						<FontAwesomeIcon icon={faCircleXmark} />
+						<FontAwesomeIcon icon={faCircleArrowLeft} />
+						<div className={styles.sliderWrapper}>
+							<img src={photos[slideIdx].src} alt='room' />
+						</div>
+						<FontAwesomeIcon icon={faCircleArrowRight} />
+					</section>
+				)}
+
 				<section className={styles.hotelWrapper}>
 					<button className={styles.bookNow}>Reserve or Book now!</button>
 					<h1 className={styles.hotelTitle}>Grand Hotel</h1>
@@ -52,7 +72,7 @@ function Hotel() {
 						{photos.map((photo, i) => (
 							<div key={photo.src} className={styles.hotelImgWrapper}>
 								<img
-									onClick={() => setSlideIdx(i)}
+									onClick={() => handleOpen(i)}
 									src={photo.src}
 									alt='room'
 									className={styles.hotelImg}
