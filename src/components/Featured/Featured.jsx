@@ -1,7 +1,9 @@
 import React from 'react'
+import useFetch from '../../hooks/useFEtch'
 import styles from './Featured.module.css'
 
 function Featured() {
+	const {data, loading, error} = useFetch()
 	return (
 		<section className={styles.featured}>
 			<div className={styles.featuredItem}>
