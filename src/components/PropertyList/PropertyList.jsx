@@ -20,17 +20,15 @@ function PropertyList() {
 				<>
 					{data &&
 						images.map((image, i) => (
-							<>
-								<div className={styles.pLisItem} key={image}>
-									<img className={styles.pListImg} src={image} alt='hotels' />
-									<div className={styles.pListTitles}>
-										<h1>{data[i]?.type}</h1>
-										<h2>
-											{data[i]?.count} {data[i]?.type}
-										</h2>
-									</div>
+							<div className={styles.pLisItem} key={i}>
+								<img className={styles.pListImg} src={image} alt='hotels' />
+								<div className={styles.pListTitles}>
+									<h1>{data[i]?.type}</h1>
+									<h2>
+										{data[i]?.count} {data[i]?.type}
+									</h2>
 								</div>
-							</>
+							</div>
 						))}
 				</>
 			)}
