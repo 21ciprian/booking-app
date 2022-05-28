@@ -1,7 +1,12 @@
 import React from 'react'
+import useFetch from '../../hooks/useFEtch'
 import styles from './FeaturedProperties.module.css'
 
 function FeaturedProperties() {
+	const baseUrl = process.env.REACT_APP_BASE_URL
+
+	const {data, loading, error} = useFetch(`${baseUrl}/hotels/countByType`)
+
 	return (
 		<article className={styles.fprop}>
 			<section className={styles.fpItem}>

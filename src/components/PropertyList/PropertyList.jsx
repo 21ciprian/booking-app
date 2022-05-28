@@ -5,7 +5,6 @@ import styles from './PropertyList.module.css'
 function PropertyList() {
 	const baseUrl = process.env.REACT_APP_BASE_URL
 	const {data, loading, error} = useFetch(`${baseUrl}/hotels/countByType`)
-	console.log('data in propertylist: ', data)
 	const images = [
 		'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/273083237.jpg?k=98715aae2473aab096102c18bfc973e2d7f46c01fbee5e1bd9d2e4c2ea2f6992&o=&hp=1',
 		'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/187133481.jpg?k=d7fd44f69a595679e1f9db9f6cc025c235ffafd24eda768ad41533fca5dcfe56&o=&hp=1',
