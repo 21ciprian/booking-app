@@ -5,6 +5,7 @@ import {useLocation} from 'react-router-dom'
 import Header from '../../components/Header/Header'
 import Navbar from '../../components/Navbar/Navbar'
 import SearchItem from '../../components/SearchItem/SearchItem'
+import useFetch from '../../hooks/useFEtch'
 import styles from './Hotels.module.css'
 
 function Hotels() {
@@ -13,8 +14,12 @@ function Hotels() {
 	const [destination, setDestination] = useState(location.state.destination)
 	const [options, setOptions] = useState(location.state.options)
 	const [openDate, setOpenDate] = useState(false)
+	const baseUrl = process.env.REACT_APP_BASE_URL
+	const {data, loading, error} = useFetch(
+		`${baseUrl}/hotels?city=${destination}`
+	)
+	console.log('data from hotels: :', data)
 
-	console.log('location: ', location)
 	return (
 		<section>
 			<Navbar />
