@@ -1,5 +1,5 @@
 import React from 'react'
-import useFetch from '../../hooks/useFEtch'
+import useFetch from '../../hooks/useFetch'
 import styles from './FeaturedProperties.module.css'
 
 function FeaturedProperties() {

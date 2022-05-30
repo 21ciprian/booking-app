@@ -5,7 +5,7 @@ import {useLocation} from 'react-router-dom'
 import Header from '../../components/Header/Header'
 import Navbar from '../../components/Navbar/Navbar'
 import SearchItem from '../../components/SearchItem/SearchItem'
-import useFetch from '../../hooks/useFEtch'
+import useFetch from '../../hooks/useFetch'
 import styles from './Hotels.module.css'
 
 function Hotels() {
@@ -17,11 +17,13 @@ function Hotels() {
 	const [max, setMax] = useState(undefined)
 	const [openDate, setOpenDate] = useState(false)
 	const baseUrl = process.env.REACT_APP_BASE_URL
-	const {data, loading, error} = useFetch(
-		`${baseUrl}/hotels?city=${destination}`
+	const {data, loading, error, reFetch} = useFetch(
+		`${baseUrl}/hotels?city=${destination}&min=${min || 0}&max=${max || 999}`
 	)
 	console.log('data from hotels: :', data)
-
+	const handleClick = () => {
+		reFetch()
+	}
 	return (
 		<section>
 			<Navbar />
@@ -56,13 +58,21 @@ function Hotels() {
 									<span className={styles.hotelsOptionText}>
 										Min price <small>per night</small>
 									</span>
-									<input type='number' className={styles.hotelsOptionInput} />
+									<input
+										type='number'
+										onChange={e => setMin(e.target.value)}
+										className={styles.hotelsOptionInput}
+									/>
 								</div>
 								<div className={styles.hotelsOptionItem}>
 									<span className={styles.hotelsOptionText}>
 										Max price <small>per night</small>
 									</span>
-									<input type='number' className={styles.hotelsOptionInput} />
+									<input
+										type='number'
+										onChange={e => setMax(e.target.value)}
+										className={styles.hotelsOptionInput}
+									/>
 								</div>
 								<div className={styles.hotelsOptionItem}>
 									<span className={styles.hotelsOptionText}>Adult</span>
@@ -93,7 +103,7 @@ function Hotels() {
 								</div>
 							</div>
 						</div>
-						<button>Search</button>
+						<button onClick={handleClick}>Search</button>
 					</div>
 					<div className={styles.hotelsResult}>
 						{loading ? (
