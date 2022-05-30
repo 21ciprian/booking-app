@@ -13,6 +13,8 @@ function Hotels() {
 	const [date, setDate] = useState(location.state.date)
 	const [destination, setDestination] = useState(location.state.destination)
 	const [options, setOptions] = useState(location.state.options)
+	const [min, setMin] = useState(undefined)
+	const [max, setMax] = useState(undefined)
 	const [openDate, setOpenDate] = useState(false)
 	const baseUrl = process.env.REACT_APP_BASE_URL
 	const {data, loading, error} = useFetch(
