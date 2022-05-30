@@ -94,14 +94,15 @@ function Hotels() {
 						<button>Search</button>
 					</div>
 					<div className={styles.hotelsResult}>
-						<SearchItem />
-						<SearchItem />
-						<SearchItem />
-						<SearchItem />
-						<SearchItem />
-						<SearchItem />
-						<SearchItem />
-						<SearchItem />
+						{loading ? (
+							<h3>Loading...</h3>
+						) : (
+							<>
+								{data?.map(item => (
+									<SearchItem item={item} key={item._id} />
+								))}
+							</>
+						)}
 					</div>
 				</section>
 			</section>
