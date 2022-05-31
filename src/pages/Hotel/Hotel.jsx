@@ -6,6 +6,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React, {useState} from 'react'
+import {useLocation} from 'react-router-dom'
 import Footer from '../../components/Footer/Footer'
 import Header from '../../components/Header/Header'
 import MailList from '../../components/MailList/MailList'
@@ -14,10 +15,14 @@ import useFetch from '../../hooks/useFetch'
 import styles from './Hotel.module.css'
 
 function Hotel() {
+	const location = useLocation()
+	const id = location.pathname.split('/')[2]
 	const [slideIdx, setSlideIdx] = useState(0)
 	const [open, setOpen] = useState(false)
 	const baseUrl = process.env.REACT_APP_BASE_URL
-	const {data, loading, error, reFetch} = useFetch(`${baseUrl}/hotels/`)
+	const {data, loading, error, reFetch} = useFetch(`${baseUrl}/hotels/${id}`)
+	console.log('location : ', location)
+	console.log('location  id: ', id)
 	const photos = [
 		{
 			src: 'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/62305922.jpg?k=c33694ab801f8841867fb75d537af4f637e909975db8631dd467a97b606457cc&o=&hp=1',
