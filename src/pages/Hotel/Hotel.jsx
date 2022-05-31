@@ -10,11 +10,14 @@ import Footer from '../../components/Footer/Footer'
 import Header from '../../components/Header/Header'
 import MailList from '../../components/MailList/MailList'
 import Navbar from '../../components/Navbar/Navbar'
+import useFetch from '../../hooks/useFetch'
 import styles from './Hotel.module.css'
 
 function Hotel() {
 	const [slideIdx, setSlideIdx] = useState(0)
 	const [open, setOpen] = useState(false)
+	const baseUrl = process.env.REACT_APP_BASE_URL
+	const {data, loading, error, reFetch} = useFetch(`${baseUrl}/hotels/`)
 	const photos = [
 		{
 			src: 'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/62305922.jpg?k=c33694ab801f8841867fb75d537af4f637e909975db8631dd467a97b606457cc&o=&hp=1',
