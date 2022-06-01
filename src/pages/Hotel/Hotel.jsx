@@ -21,7 +21,7 @@ function Hotel() {
 	const [slideIdx, setSlideIdx] = useState(0)
 	const [open, setOpen] = useState(false)
 	const baseUrl = process.env.REACT_APP_BASE_URL
-	const {dates} = useContext(SearchContext)
+	const {dates, options} = useContext(SearchContext)
 
 	const {data, loading, error, reFetch} = useFetch(
 		`${baseUrl}/hotels/find/${id}`
@@ -49,6 +49,9 @@ function Hotel() {
 		}
 		setSlideIdx(newSlideIdx)
 	}
+	console.log('days: ', days)
+	console.log('data.cheapestPrice: ', data.cheapestPrice)
+	console.log('options.room: ', options.room)
 	return (
 		<section>
 			<Navbar />
@@ -122,7 +125,8 @@ function Hotel() {
 									location score of 9.8!
 								</span>
 								<h2>
-									<strong>£700</strong> ({days} nights)
+									<strong>£{days * data.cheapestPrice * options.room}</strong> (
+									{days} nights)
 								</h2>
 								<button>Reserve or Book now!</button>
 							</div>
