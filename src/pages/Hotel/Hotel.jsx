@@ -5,12 +5,13 @@ import {
 	faLocationDot,
 } from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import {useLocation} from 'react-router-dom'
 import Footer from '../../components/Footer/Footer'
 import Header from '../../components/Header/Header'
 import MailList from '../../components/MailList/MailList'
 import Navbar from '../../components/Navbar/Navbar'
+import {SearchContext} from '../../context/SearchContext'
 import useFetch from '../../hooks/useFetch'
 import styles from './Hotel.module.css'
 
@@ -20,12 +21,21 @@ function Hotel() {
 	const [slideIdx, setSlideIdx] = useState(0)
 	const [open, setOpen] = useState(false)
 	const baseUrl = process.env.REACT_APP_BASE_URL
+	const {dates} = useContext(SearchContext)
+
 	const {data, loading, error, reFetch} = useFetch(
 		`${baseUrl}/hotels/find/${id}`
 	)
 	console.log('location : ', location)
 	console.log('location  id: ', id)
-
+	console.log('dates from hotel: ', dates)
+	const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24
+	function dayDifference(date1, date2) {
+		const timeDiff = Math.abs(date2.getTime() - date1.getTime())
+		const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY)
+		return diffDays
+	}
+	const days = dayDifference(dates[0].endDate, dates[0].startDate)
 	function handleOpen(i) {
 		setSlideIdx(i)
 		setOpen(true)
@@ -106,13 +116,13 @@ function Hotel() {
 								<p className={styles.hotelDesc}>{data.desc}</p>
 							</div>
 							<div className={styles.hotelDetailsPrice}>
-								<h1>Perfect for a 7-night stay!</h1>
+								<h1>Perfect for a {days}-night stay!</h1>
 								<span>
 									Located in the heart of London, this property has an excellent
 									location score of 9.8!
 								</span>
 								<h2>
-									<strong>£700</strong> (7 nights)
+									<strong>£700</strong> ({days} nights)
 								</h2>
 								<button>Reserve or Book now!</button>
 							</div>

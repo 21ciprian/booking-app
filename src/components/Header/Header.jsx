@@ -18,7 +18,7 @@ import {SearchContext} from '../../context/SearchContext'
 import styles from './Header.module.css'
 
 function Header({type}) {
-	const [date, setDate] = useState([
+	const [dates, setDates] = useState([
 		{
 			startDate: new Date(),
 			endDate: new Date(),
@@ -40,8 +40,8 @@ function Header({type}) {
 	}
 	const {dispatch} = useContext(SearchContext)
 	function handleSearch() {
-		dispatch({type: 'NEW_SEARCH', payload: {destination, date, options}})
-		navigate('/hotels', {state: {destination, date, options}})
+		dispatch({type: 'NEW_SEARCH', payload: {destination, dates, options}})
+		navigate('/hotels', {state: {destination, dates, options}})
 	}
 
 	return (
@@ -104,15 +104,15 @@ function Header({type}) {
 								<span
 									className={styles.headerSearchText}
 									onClick={() => setOpenDate(!openDate)}>{`${format(
-									date[0].startDate,
+									dates[0].startDate,
 									'dd/MM/yyyy'
-								)} to ${format(date[0].endDate, 'dd/MM/yyyy')}`}</span>{' '}
+								)} to ${format(dates[0].endDate, 'dd/MM/yyyy')}`}</span>{' '}
 								{openDate && (
 									<DateRange
 										editableDateInputs={true}
-										onChange={item => setDate([item.selection])}
+										onChange={item => setDates([item.selection])}
 										moveRangeOnFirstSelection={false}
-										ranges={date}
+										ranges={dates}
 										minDate={new Date()}
 										className={styles.date}
 									/>
