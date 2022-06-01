@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './components/App/App'
+import { AuthCOntextProvider } from './context/AuthContext'
 import { SearchCOntextProvider } from './context/SearchContext'
 import './index.css'
 import reportWebVitals from './reportWebVitals'
@@ -8,9 +9,11 @@ import reportWebVitals from './reportWebVitals'
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
 	<React.StrictMode>
-		<SearchCOntextProvider>
-			<App />
-		</SearchCOntextProvider>
+		<AuthCOntextProvider>
+			<SearchCOntextProvider>
+				<App />
+			</SearchCOntextProvider>
+		</AuthCOntextProvider>
 	</React.StrictMode>
 )
 
