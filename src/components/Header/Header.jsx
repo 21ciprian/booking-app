@@ -14,6 +14,7 @@ import {DateRange} from 'react-date-range'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import {useNavigate} from 'react-router-dom'
+import {AuthContext} from '../../context/AuthContext'
 import {SearchContext} from '../../context/SearchContext'
 import styles from './Header.module.css'
 
@@ -29,7 +30,10 @@ function Header({type}) {
 	const [openOptions, setOpenOptions] = useState(false)
 	const [destination, setDestination] = useState('')
 	const [options, setOptions] = useState({adult: 1, children: 0, room: 1})
+
 	const navigate = useNavigate()
+	const {user} = useContext(AuthContext)
+
 	function handleOption(name, op) {
 		setOptions(prev => {
 			return {
@@ -83,7 +87,11 @@ function Header({type}) {
 							Get rewarderd for your travels - unlock instant savings of 10% or
 							more with a free booking-app account
 						</p>
-						<button className={styles.headerButton}>Sign in / Register</button>
+						{!user && (
+							<button className={styles.headerButton}>
+								Sign in / Register
+							</button>
+						)}
 						<section className={styles.headerSearch}>
 							<div className={styles.headerSearchItem}>
 								{' '}
