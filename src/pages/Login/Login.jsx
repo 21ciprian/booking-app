@@ -1,5 +1,4 @@
 import axios from 'axios'
-import {previousDay} from 'date-fns'
 import React, {useContext, useState} from 'react'
 import {AuthContext} from '../../context/AuthContext'
 import styles from './Login.module.css'
@@ -13,7 +12,7 @@ function Login() {
 	const baseUrl = process.env.REACT_APP_BASE_URL
 
 	function handleChange(e) {
-		setCredentials({...previousDay, [e.target.id]: e.target.value})
+		setCredentials(prev => ({...prev, [e.target.id]: e.target.value}))
 	}
 	async function handleClick(e) {
 		e.preventDefault()
@@ -25,6 +24,8 @@ function Login() {
 			dispatch({type: 'LOGIN_FAIL', payload: error.response.data})
 		}
 	}
+	console.log('credentials: ', credentials)
+	console.log('user: ', user)
 	return (
 		<article className={styles.login}>
 			<section className={styles.lContainer}>
