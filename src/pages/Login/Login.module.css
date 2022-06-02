@@ -5,3 +5,8 @@
 	align-items: center;
 	height: 100vh;
 }
+.lContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 0.7rem;
+}
