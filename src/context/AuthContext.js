@@ -12,7 +12,7 @@ const AuthReducer = (state, action) => {
     case 'LOGIN_START':
       return {
         user: null,
-        loading: false,
+        loading: true,
         error: null
       }
     case 'LOGIN_SUCCESS':
@@ -23,7 +23,7 @@ const AuthReducer = (state, action) => {
       }
     case 'LOGIN_FAIL':
       return {
-        user: action.payload,
+        user: null,
         loading: false,
         error: action.payload
       }
