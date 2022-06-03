@@ -21,6 +21,7 @@ function Hotel() {
 	const id = location.pathname.split('/')[2]
 	const [slideIdx, setSlideIdx] = useState(0)
 	const [open, setOpen] = useState(false)
+	const [openModal, setOpenModal] = useState(false)
 	const navigate = useNavigate()
 	const baseUrl = process.env.REACT_APP_BASE_URL
 	const {dates, options} = useContext(SearchContext)
@@ -57,6 +58,7 @@ function Hotel() {
 	console.log('options.room: ', options.room)
 	function handleClick() {
 		if (user) {
+			setOpenModal(true)
 		} else {
 			navigate('/login')
 		}
