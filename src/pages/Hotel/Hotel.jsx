@@ -31,9 +31,7 @@ function Hotel() {
 	const {data, loading, error, reFetch} = useFetch(
 		`${baseUrl}/hotels/find/${id}`
 	)
-	console.log('location : ', location)
-	console.log('location  id: ', id)
-	console.log('dates from hotel: ', dates)
+
 	const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24
 	function dayDifference(date1, date2) {
 		const timeDiff = Math.abs(date2.getTime() - date1.getTime())

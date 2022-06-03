@@ -1,12 +1,15 @@
 import {faCircleXmark} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import axios from 'axios'
 import React, {useContext, useState} from 'react'
+import {useNavigate} from 'react-router-dom'
 import {SearchContext} from '../../context/SearchContext'
 import useFetch from '../../hooks/useFetch'
 import styles from './Reserve.module.css'
 
 function Reserve({setOpen, hotelId}) {
 	const [selectedRooms, setSelectedRooms] = useState([])
+	const navigate = useNavigate()
 	const baseUrl = process.env.REACT_APP_BASE_URL
 	const {dates} = useContext(SearchContext)
 	const {data, loading, error} = useFetch(`${baseUrl}/hotels/room/${hotelId}`)
@@ -39,11 +42,22 @@ function Reserve({setOpen, hotelId}) {
 		)
 		return !isFound
 	}
-	function handleClick() {}
-	console.log('selectedRooms: ', selectedRooms)
-	console.log('dates in reserved: ', dates)
 	const allDates = getDatesInRange(dates[0].startDate, dates[0].endDate)
-	console.log('allDates: ', allDates)
+	async function handleClick() {
+		try {
+			await Promise.all(
+				selectedRooms.map(roomId => {
+					const response = axios.put(
+						`${baseUrl}/rooms/availability/${roomId}`,
+						{dates: allDates}
+					)
+					return response.data
+				})
+			)
+			setOpen(false)
+			navigate('/')
+		} catch (error) {}
+	}
 	return (
 		<section className={styles.reserve}>
 			<section className={styles.rContainer}>
