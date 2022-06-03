@@ -27,3 +27,20 @@
 	gap: 3.125rem;
 	padding: 1.25rem;
 }
+.rItemInfo {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+}
+.rTitle {
+	font-weight: 500;
+}
+.rDesc {
+	font-weight: 300;
+}
+.rMax {
+	font-size: 0.75rem;
+}
+.rPrice {
+	font-weight: 500;
+}

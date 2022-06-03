@@ -73,11 +73,11 @@ function Reserve({setOpen, hotelId}) {
 								/>
 							</section>
 						))}
-						<button className={styles.rButton} onClick={handleClick}>
-							Reserve Now!
-						</button>
 					</section>
 				))}
+				<button className={styles.rButton} onClick={handleClick}>
+					Reserve Now!
+				</button>
 			</section>
 		</section>
 	)
