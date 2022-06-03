@@ -11,6 +11,7 @@ import Footer from '../../components/Footer/Footer'
 import Header from '../../components/Header/Header'
 import MailList from '../../components/MailList/MailList'
 import Navbar from '../../components/Navbar/Navbar'
+import Reserve from '../../components/Reserve/Reserve'
 import {AuthContext} from '../../context/AuthContext'
 import {SearchContext} from '../../context/SearchContext'
 import useFetch from '../../hooks/useFetch'
@@ -147,6 +148,7 @@ function Hotel() {
 					<Footer />
 				</section>
 			)}
+			{openModal && <Reserve setOpen={setOpenModal} hotelId={id} />}
 		</section>
 	)
 }
