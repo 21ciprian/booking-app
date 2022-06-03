@@ -6,7 +6,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React, {useContext, useState} from 'react'
-import {useLocation} from 'react-router-dom'
+import {useLocation, useNavigate} from 'react-router-dom'
 import Footer from '../../components/Footer/Footer'
 import Header from '../../components/Header/Header'
 import MailList from '../../components/MailList/MailList'
@@ -21,6 +21,7 @@ function Hotel() {
 	const id = location.pathname.split('/')[2]
 	const [slideIdx, setSlideIdx] = useState(0)
 	const [open, setOpen] = useState(false)
+	const navigate = useNavigate()
 	const baseUrl = process.env.REACT_APP_BASE_URL
 	const {dates, options} = useContext(SearchContext)
 	const {user} = useContext(AuthContext)
@@ -54,6 +55,12 @@ function Hotel() {
 	console.log('days: ', days)
 	console.log('data.cheapestPrice: ', data.cheapestPrice)
 	console.log('options.room: ', options.room)
+	function handleClick() {
+		if (user) {
+		} else {
+			navigate('/login')
+		}
+	}
 	return (
 		<section>
 			<Navbar />
@@ -130,7 +137,7 @@ function Hotel() {
 									<strong>£{days * data.cheapestPrice * options.room}</strong> (
 									{days} nights)
 								</h2>
-								<button>Reserve or Book now!</button>
+								<button onClick={handleClick}>Reserve or Book now!</button>
 							</div>
 						</div>
 					</section>
