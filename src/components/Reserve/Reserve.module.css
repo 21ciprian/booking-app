@@ -44,6 +44,17 @@
 .rPrice {
 	font-weight: 500;
 }
+.rSelectRooms {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25rem;
+	font-size: 0.5rem;
+	color: gray;
+}
+.room {
+	display: flex;
+	flex-direction: column;
+}
 .rButton {
 	border: none;
 	padding: 0.7rem 1.25rem;

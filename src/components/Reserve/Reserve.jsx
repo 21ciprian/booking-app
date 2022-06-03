@@ -61,18 +61,21 @@ function Reserve({setOpen, hotelId}) {
 							<div className={styles.rMax}>
 								Max people: <strong>{item.maxPeople}</strong>
 							</div>
+							<div className={styles.rPrice}>£{item.price}</div>
 						</section>
-						{item.roomNumbers.map(room => (
-							<section className={styles.room}>
-								<label>{room.number}</label>
-								<input
-									type='checkbox'
-									value={room._id}
-									onChange={handleSelect}
-									disabled={!isAvailable(room)}
-								/>
-							</section>
-						))}
+						<div className={styles.rSelectRooms}>
+							{item.roomNumbers.map(room => (
+								<section className={styles.room}>
+									<label>{room.number}</label>
+									<input
+										type='checkbox'
+										value={room._id}
+										onChange={handleSelect}
+										disabled={!isAvailable(room)}
+									/>
+								</section>
+							))}
+						</div>
 					</section>
 				))}
 				<button className={styles.rButton} onClick={handleClick}>
